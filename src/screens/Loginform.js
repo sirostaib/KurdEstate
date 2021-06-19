@@ -1,105 +1,65 @@
-import React, { useRef, useState } from "react"
-import { Form, Button, Card, Alert, NavLink } from "react-bootstrap"
-import { useAuth } from "../contexts/AuthContext"
+import React, { Component } from "react";
 import styled, { css } from "styled-components";
-import Firebase from "../firebase"
-import { Link, useHistory } from "react-router-dom"
 import MaterialButtonGrey from "../components/MaterialButtonGrey";
+import MaterialButtonGrey1 from "../components/MaterialButtonGrey1";
 
-export default function Login() {
-  const emailRef = useRef()
-  const passwordRef = useRef()
-  const { login } = useAuth()
-  const [error, setError] = useState("")
-  const [loading, setLoading] = useState(false)
-  const history = useHistory()
-
-  async function handleSubmit(e) {
-    e.preventDefault()
-     
-    try {
-      setError("")
-      setLoading(true)
-      await login(emailRef.current.value, passwordRef.current.value)
-      history.push("/Homepage")
-    } catch {
-      setError("Failed to log in")
-    }
-
-    setLoading(false)
-  }
-
+function Loginform(props) {
   return (
-    <form onSubmit={handleSubmit}>
     <Container>
-    <TextRow>
-      <Text>
-        <Rect>
-          <Welcome>Welcome To Kurd ESTATE</Welcome>
-          <Rect3></Rect3>
-          <Textbox>
-            Kurd&#39;s membership is composed of residential and commercial
-            brokers, salespeople, property managers, appraisers, counselors,
-            and others engaged in the real estate industry.
-          </Textbox>
-          <NewUser>New User?</NewUser>
-
-          <NavLink to="/ignup">
-          <MaterialButtonGrey type="submit"
-            style={{
-              height: 76,
-              width: 222,
-              borderRadius: 100,
-              marginTop: 164,
-              marginLeft: 103
-            }}
-          ></MaterialButtonGrey>
-          </NavLink>
-
-        </Rect>
-      </Text>
-      <Loging>
-        <Rect2>
-          <Login1>Login</Login1>
-          <Email placeholder="   Enter the email" type="email" ref={emailRef} required></Email>
-          <Password placeholder="   Enter the password" type="password" ref={passwordRef} required></Password>
-
-          <Button disabled={loading}  style={{
-              height: 60,
-              width: 220,
-              borderRadius: 100,
-              marginTop: 152,
-              marginLeft: 336
-            }}  className=" w-10" type="submit">
-            Log In
-          </Button>
-          <div className="w-100 text-center mt-3">
-            <Link to="/forgot-password">Forgot Password?</Link>
-          </div>
-          {error && <Alert variant="danger">{error}</Alert>}
-        </Rect2>
-      </Loging>
-    </TextRow>
-    
-  </Container>
-  
-  </form>
-
-  )
+      <TextRow>
+        <Text>
+          <Rect>
+            <Welcome>Welcome To Kurd ESTATE</Welcome>
+            <Rect3></Rect3>
+            <Textbox>
+              Kurd&#39;s membership is composed of residential and commercial
+              brokers, salespeople, property managers, appraisers, counselors,
+              and others engaged in the real estate industry.
+            </Textbox>
+            <NewUser>New User?</NewUser>
+            <MaterialButtonGrey
+              style={{
+                height: 76,
+                width: 222,
+                borderRadius: 100,
+                marginTop: 164,
+                marginLeft: 103
+              }}
+            ></MaterialButtonGrey>
+          </Rect>
+        </Text>
+        <Loging>
+          <Rect2>
+            <Login>Login</Login>
+            <Email placeholder="   Enter the email"></Email>
+            <Password placeholder="   Enter the password"></Password>
+            <MaterialButtonGrey1
+              style={{
+                height: 60,
+                width: 220,
+                borderRadius: 100,
+                marginTop: 152,
+                marginLeft: 336
+              }}
+            ></MaterialButtonGrey1>
+          </Rect2>
+        </Loging>
+      </TextRow>
+    </Container>
+  );
 }
 
 
 const Container = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: center;
   height: 100vh;
   width: 100vw;
 `;
 
 const Text = styled.div`
   width: 644px;
-  height: 850px;
+  height: 636px;
   flex-direction: column;
   display: flex;
   margin-top: 108px;
@@ -182,7 +142,7 @@ const Rect2 = styled.div`
   display: flex;
 `;
 
-const Login1 = styled.span`
+const Login = styled.span`
   font-family: Roboto;
   font-style: normal;
   font-weight: 700;
@@ -202,13 +162,14 @@ const Email = styled.input`
   height: 90px;
   width: 692px;
   font-size: 20px;
-  background-color: white;
+  background-color: rgba(255,255,255,1);
   border-width: 0px;
   border-color: #000000;
   border-radius: 39px;
   margin-top: 120px;
   margin-left: 100px;
   border-style: solid;
+  background: transparent;
 `;
 
 const Password = styled.input`
@@ -220,12 +181,12 @@ const Password = styled.input`
   width: 692px;
   line-height: 14px;
   border-radius: 39px;
-  background-color: white;
+  background-color: rgba(255,255,255,1);
   font-size: 20px;
   margin-top: 90px;
   margin-left: 100px;
   border: none;
-
+  background: transparent;
 `;
 
 const TextRow = styled.div`
@@ -233,7 +194,9 @@ const TextRow = styled.div`
   flex-direction: row;
   display: flex;
   flex: 1 1 0%;
-  margin-right: 0px;
-  margin-left: 260px;
-  margin-top: 30px;
+  margin-right: 84px;
+  margin-left: 188px;
+  margin-top: 68px;
 `;
+
+export default Loginform;

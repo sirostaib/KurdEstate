@@ -68,22 +68,23 @@ const items = useItems()
                   position: "absolute",
                   left: 6,
                   top: 0,
-                  boxShadow: "0px 0px 30px  0.18px rgba(0,0,0,1) "
+                  boxShadow: "0px 0px 15px  0.1px rgba(0,0,0,1) "
                 }}
               ></MaterialButtonLight>
               <Information>
                 <div key={item.id}>
                 <TitleStack>
-                  <Title>{item.Title}</Title>
-                  <City>City:{item.City}</City>
+                  <Title>{item.title}</Title>
+                  
+                  <City>City:{item.city}</City>
                 </TitleStack>
 
                 <AddressColumnRow>
                   <AddressColumn>
-                    <Address>Address:{item.Address}</Address>
-                    <Description>{item.Description}</Description>
+                    <Address>Address:{item.location}</Address>
+                    <Description>{item.description}</Description>
                   </AddressColumn>
-                  <Price>${item.Price}</Price>
+                  <Price>${item.price}</Price>
                 </AddressColumnRow>
 
                 <OwnerFullNameColumnRow>
@@ -93,23 +94,25 @@ const items = useItems()
                   </OwnerFullNameColumn>
                   <PhoneNumberStack>
                     <PhoneNumber>Phone Number:{item.phone}</PhoneNumber>
-                    <Area>M2:{item.Area}</Area>
+                    <Area>M2:{item.area}</Area>
                   </PhoneNumberStack>
                   <PurposeColumn>
-                    <Purpose>Purpose:{item.Purpose}</Purpose>
-                    <Date>Date:{item.Date}</Date>
+                    <Purpose>Purpose:{item.purpose}</Purpose>
+                    <Date>Date:{item.date}</Date>
                   </PurposeColumn>
                 </OwnerFullNameColumnRow>
                 </div>
               </Information>
               <Image3 src={require("../assets/images/Unts-2.png")}></Image3>
               <Rect2></Rect2>
+              
             </MaterialButtonLightStack>
-
+                
           </Container>
-          
+
           );
         } )}
+        
       </div>
     
   );
@@ -118,6 +121,9 @@ const items = useItems()
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+	align-items: center;
+  margin-bottom: 60px;
+
 `;
 
 const Information = styled.div`
@@ -145,7 +151,7 @@ const Title = styled.span`
 
 const City = styled.span`
   font-family: Roboto;
-  top: 56px;
+  top: 60px;
   left: 0px;
   position: absolute;
   font-style: normal;
@@ -158,7 +164,7 @@ const City = styled.span`
 
 const TitleStack = styled.div`
   width: 1088px;
-  height: 87px;
+  height: 75px;
   position: relative;
 `;
 
@@ -204,7 +210,7 @@ const AddressColumnRow = styled.div`
   height: 106px;
   flex-direction: row;
   display: flex;
-  margin-top: 85px;
+  margin-top: 10px;
 `;
 
 const OwnerFullName = styled.span`

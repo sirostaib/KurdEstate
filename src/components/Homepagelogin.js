@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import styled, { css } from "styled-components";
 import Headerslogin from "../components/headerslogin";
 import Properties from "../components/Properties";
-import GoogleMapReact from "google-map-react";
-
 
 function Homepage(props) {
   return (
@@ -19,8 +17,9 @@ function Homepage(props) {
         style={{
           height: 282,
           width: 1521,
-          marginTop: 366,
-          marginLeft: 200
+          marginTop: 100,
+          marginLeft: 200,
+          marginbottom: 100
         }}
       ></Properties>
      
@@ -35,9 +34,6 @@ const Image = styled.img`
   object-fit: contain;
 `;
 
-const MapView = styled.div`
-  height: 204px;
-  width: 817px;
-`;
+
 
 export default Homepage;

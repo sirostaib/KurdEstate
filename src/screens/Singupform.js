@@ -1,103 +1,55 @@
-import React, { useRef, useState } from "react"
-import { Form, Button, Card, Alert, NavLink } from "react-bootstrap"
-import { useAuth } from "../contexts/AuthContext"
-import { Link, useHistory } from "react-router-dom"
-import app from "../firebase"
-import MaterialButtonGrey1 from "../components/MaterialButtonGrey1";
+import React, { Component } from "react";
 import styled, { css } from "styled-components";
+import MaterialButtonGrey1 from "../components/MaterialButtonGrey1";
+import MaterialButtonGrey2 from "../components/MaterialButtonGrey2";
 
-
-
-export default function Signup() {
-  const emailRef = useRef()
-  const passwordRef = useRef()
-  const nameRef = useRef()
-  const passwordConfirmRef = useRef()
-  const { signup } = useAuth()
-  const [error, setError] = useState("")
-  const [loading, setLoading] = useState(false)
-  const history = useHistory()
-  //const [email, setEmail] = useState('')
-  //const [fullName, setFullName] = useState('')
-
-  async function handleSubmit(e) {
-    e.preventDefault()
-    
-
-    if (passwordRef.current.value !== passwordConfirmRef.current.value) {
-      return setError("Passwords do not match")
-    }
-
-    
-
-    try {
-      setError("")
-      setLoading(true)
-      await signup(emailRef.current.value, passwordRef.current.value)
-      app.firestore().collection('account').add({
-        email: emailRef.current.value ,
-        fullName: nameRef.current.value
-        
-      })  
-      history.push("/")
-    } catch {
-      setError("Failed to create an account")
-    }
-
-    setLoading(false)
-  }
-
+function Singupform(props) {
   return (
-    <form onSubmit={handleSubmit}> 
     <Container>
-    <Text1Row>
-      <Text1>
-        <Rect>
-          <Welcom>Welcome To Kurd ESTATE</Welcom>
-          <Rect3></Rect3>
-          <Text>
-            Kurd&#39;s membership is composed of residential and commercial
-            brokers, salespeople, property managers, appraisers, counselors,
-            and others engaged in the real estate industry.
-          </Text>
-          <NavLink to="/login">
-          <MaterialButtonGrey1
-            style={{
-              height: 56,
-              width: 214,
-              borderRadius: 100,
-              marginTop: 294,
-              marginLeft: 164
-            }}
-          ></MaterialButtonGrey1>
-          </NavLink>
-        </Rect>
-      </Text1>
-      <RegistartionG>
-        <Rect2>
-          <Title>Registration</Title>
-          <FullName placeholder="   Full name" type="text" ref={nameRef} required></FullName>
-          <Email placeholder="   Entre the email" type="email" ref={emailRef} required></Email>
-          <PasswordRow>
-            <Password placeholder="   Password" type="password" ref={passwordRef} required></Password>
-            <VerifyPassword placeholder="   Verify Password" type="password" ref={passwordConfirmRef} required></VerifyPassword>
-          </PasswordRow>
-          <Button disabled={loading} className="w-10" style={{
-              height: 60,
-              width: 220,
-              borderRadius: 100,
-              marginTop: 100,
-              marginLeft: 500}}
-               type="submit">
-            Sign Up
-          </Button>
-          {error && <Alert variant="danger">{error}</Alert>}
-        </Rect2>
-      </RegistartionG>
-    </Text1Row>
-  </Container>
-  </form>
-  )
+      <Text1Row>
+        <Text1>
+          <Rect>
+            <Welcom>Welcome To Kurd ESTATE</Welcom>
+            <Rect3></Rect3>
+            <Text>
+              Kurd&#39;s membership is composed of residential and commercial
+              brokers, salespeople, property managers, appraisers, counselors,
+              and others engaged in the real estate industry.
+            </Text>
+            <MaterialButtonGrey1
+              style={{
+                height: 56,
+                width: 214,
+                borderRadius: 100,
+                marginTop: 294,
+                marginLeft: 164
+              }}
+            ></MaterialButtonGrey1>
+          </Rect>
+        </Text1>
+        <RegistartionG>
+          <Rect2>
+            <Title>Registration</Title>
+            <FullName placeholder="   Full name"></FullName>
+            <Email placeholder="   Entre the email"></Email>
+            <PasswordRow>
+              <Password placeholder="   Password"></Password>
+              <VerifyPassword placeholder="   Verify Password"></VerifyPassword>
+            </PasswordRow>
+            <MaterialButtonGrey2
+              style={{
+                height: 78,
+                width: 202,
+                borderRadius: 100,
+                marginTop: 126,
+                marginLeft: 765
+              }}
+            ></MaterialButtonGrey2>
+          </Rect2>
+        </RegistartionG>
+      </Text1Row>
+    </Container>
+  );
 }
 
 const Container = styled.div`
@@ -109,7 +61,7 @@ const Container = styled.div`
 
 const Text1 = styled.div`
   width: 535px;
-  height: 930px;
+  height: 730px;
   flex-direction: column;
   display: flex;
   margin-top: 66px;
@@ -187,6 +139,7 @@ const Title = styled.span`
   font-size: 50px;
   text-align: center;
   margin-top: 66px;
+  margin-left: 454px;
 `;
 
 const FullName = styled.input`
@@ -202,7 +155,7 @@ const FullName = styled.input`
   margin-top: 121px;
   margin-left: 55px;
   border: none;
- 
+  background: transparent;
 `;
 
 const Email = styled.input`
@@ -218,7 +171,7 @@ const Email = styled.input`
   margin-top: 62px;
   margin-left: 55px;
   border: none;
-
+  background: transparent;
 `;
 
 const Password = styled.input`
@@ -232,7 +185,7 @@ const Password = styled.input`
   border-radius: 100px;
   font-size: 20px;
   border: none;
-
+  background: transparent;
 `;
 
 const VerifyPassword = styled.input`
@@ -247,7 +200,7 @@ const VerifyPassword = styled.input`
   background-color: rgba(255,255,255,1);
   margin-left: 20px;
   border: none;
-  
+  background: transparent;
 `;
 
 const PasswordRow = styled.div`
@@ -265,6 +218,8 @@ const Text1Row = styled.div`
   display: flex;
   flex: 1 1 0%;
   margin-right: 85px;
-  margin-left: 238px;
+  margin-left: 118px;
   margin-top: 56px;
 `;
+
+export default Singupform;

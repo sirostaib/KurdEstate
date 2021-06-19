@@ -18,10 +18,11 @@ function Homepage(props) {
         style={{
           height: 282,
           width: 1521,
-          marginTop: 366,
+          marginTop: 266,
           marginLeft: 200
         }}
       ></Property>
+  
     </>
   );
 }
@@ -29,6 +30,7 @@ function Homepage(props) {
 const Image = styled.img`
   width: 1920px;
   height: 602px;
+  margin-bottom: 50px;
   object-fit: contain;
 `;
 
