@@ -34,11 +34,25 @@ export default function ForgotPassword() {
           {error && <Alert variant="danger">{error}</Alert>}
           {message && <Alert variant="success">{message}</Alert>}
           <Form onSubmit={handleSubmit}>
-            <Form.Group id="email">
+            <Form.Group id="email" style={{
+              height: 50,
+              marginLeft: 900,
+              marginTop: 20,
+              width: 300,
+              borderRadius: 100,
+              
+            }} >
               <Form.Label>Email</Form.Label>
               <Form.Control type="email" ref={emailRef} required />
             </Form.Group>
-            <Button disabled={loading} className="w-100" type="submit">
+            <Button disabled={loading} style={{
+              height: 50,
+              marginLeft: 900,
+              marginTop: 40,
+              width: 300,
+              borderRadius: 100,
+              
+            }} className="w-10" type="submit">
               Reset Password
             </Button>
           </Form>
