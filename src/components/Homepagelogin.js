@@ -23,19 +23,7 @@ function Homepage(props) {
           marginLeft: 200
         }}
       ></Properties>
-      <MapView>
-      <GoogleMapReact
-        bootstrapURLKeys={{ key: "AIzaSyCekJNgRNPxPWwv04n1fD_zpmSTDB_QIJE" }}
-        defaultZoom={4}
-        provider="MapView.PROVIDER_GOOGLE"
-        defaultCenter={{
-          latitude: 37.78825,
-          lat: 20.5937,
-          lng: 78.9629
-        }}
-        customMapStyle="Standard"
-      />
-    </MapView>
+     
   
     </>
   );

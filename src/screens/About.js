@@ -1,21 +1,23 @@
 import React, { Component } from "react";
 import styled, { css } from "styled-components";
-import Header from "../components/Header";
+import Headerslogin from "../components/headerslogin";
 import RegisterBtn from "../components/RegisterBtn";
 import SubmitBtnContact from "../components/SubmitBtnContact";
+import {NavLink} from "react-router-dom";
 
 function About(props) {
   return (
     <Container>
-      <Header
+      <Headerslogin
         style={{
           width: 1920,
           height: 262
         }}
-      ></Header>
+      ></Headerslogin>
       <ImageStack>
         <Image>
-          <RegisterBtn
+          <NavLink to="/signup">
+          <RegisterBtn type="submit"
             style={{
               height: 44,
               width: 157,
@@ -23,6 +25,8 @@ function About(props) {
               marginLeft: 423
             }}
           ></RegisterBtn>
+          </NavLink>
+
         </Image>
         <ContactUs>Contact Us</ContactUs>
         <LoremIpsum>
@@ -39,7 +43,8 @@ function About(props) {
           <Description>Discription</Description>
           <PlaceholderDescription placeholder="Message"></PlaceholderDescription>
         </GDescription>
-        <SubmitBtnContact
+        
+        <SubmitBtnContact type="submit"
           style={{
             height: 44,
             width: 122,
@@ -64,7 +69,7 @@ const Container = styled.div`
 const Image = styled.div`
   top: 0px;
   left: 0px;
-  width: 1946px;
+  width: 1920px;
   height: 818px;
   position: absolute;
   opacity: 0.57;

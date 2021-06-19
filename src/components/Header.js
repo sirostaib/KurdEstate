@@ -1,10 +1,12 @@
 import React, { Component, setState } from "react";
 import styled, { css } from "styled-components";
 import LoginBt from "./LoginBt";
-import { useSelector } from 'react-redux' 
+import { useSelector } from 'react-redux';
+import LogoutBt from "./LogoutBt";
 import SingupBt from "./SingupBt";
 import userStatus from '../redux/actions/user'
 import { useAuth } from "../contexts/AuthContext";
+import AccountBt from "./accountBt";
 import { BrowserRouter as Router, Switch, Route, Link, NavLink, Redirect, useHistory  } from "react-router-dom"
 
 
@@ -17,8 +19,9 @@ function Header(props) {
     logout()
       history.push("/")
   }
+
   const login = () => {
-    userStatus = true
+    var userStatus = true;
     
   
   }
@@ -41,11 +44,27 @@ function Header(props) {
           {userState ? 
                       
                       (
-                        <button className="btn btn-primary w-30 mt-3" type= "submit" onClick = {logoutt}>rebaz xwery</button>
+                        <>
+                        <LogoutBt  style={{
+                          height: 76,
+                          width: 400,
+                          borderRadius: 100,
+                          marginLeft: 50,
+                          marginTop: 92}} type= "submit" onClick = {logoutt}></LogoutBt>
+                          
+                          <NavLink to="/update-profile">
+                          <AccountBt type="submit" style={{
+                            height: 76,
+                            width: 200,
+                            borderRadius: 100,
+                            marginLeft: 70,
+                            marginTop: 92}} ></AccountBt>
+                            </NavLink>
+                            </>
                     ) : (
                     <>
                     <NavLink to = "/Login">
-                    <LoginBt 
+                    <LoginBt type="submit"
                       style={{
                         height: 76,
                         width: 200,
@@ -57,7 +76,7 @@ function Header(props) {
                     </NavLink>
                     
                     <NavLink to="/signup">
-                  <SingupBt
+                  <SingupBt type="submit"
                     style={{
                       height: 76,
                       width: 200,
@@ -146,7 +165,7 @@ const LogoRow = styled.div`
   display: flex;
   flex: 1 1 0%;
   margin-right: 120px;
-  margin-left: 86px;
+  margin-left: 0px;
   margin-top: 6px;
 `;
 

@@ -18,7 +18,7 @@ function Header(props) {
       history.push("/")
   }
   const login = () => {
-    userStatus = true
+    var userStatus = true
   }
   const userState = useAuth()
 
@@ -31,7 +31,7 @@ function Header(props) {
             src={require("../assets/images/580604f859e84f0c98d76b24522eb8f3.png")}
           ></Logo>
           
-          <Home  style={{marginLeft: 0}}> <NavLink to="/Homepage">Home</NavLink></Home>
+          <Home  style={{marginLeft: 0}}> <NavLink to="/">Home</NavLink></Home>
           <Properties> <NavLink to="/Addproperty">AddHouse</NavLink></Properties>
           <Contact><NavLink to="/About">Contact</NavLink></Contact>
           <About2><NavLink to="/Contact">About</NavLink></About2>

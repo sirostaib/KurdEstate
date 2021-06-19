@@ -78,6 +78,7 @@ const items = useItems()
                     <Title>{item.title}</Title>
                     <Street>{item.location}</Street>
                   </TitleColumn>
+                  <Discription>Discription</Discription>
                   <Price>${item.price}</Price>
                 </TitleColumnRow>
                 <Rect2></Rect2>
@@ -106,6 +107,16 @@ const items = useItems()
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+`;
+
+const Discription = styled.span`
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 400;
+  color: #121212;
+  height: 98px;
+  width: 359px;
+  font-size: 12px;
 `;
 
 const Information = styled.div`

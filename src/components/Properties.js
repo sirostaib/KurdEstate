@@ -22,6 +22,7 @@ function Properties(props) {
               <Title>A192 Twy Malik slaw choni</Title>
               <Street>Twy Malik Street</Street>
             </TitleColumn>
+            <Discription>Discription</Discription>
             <Price>$270,000</Price>
           </TitleColumnRow>
           <Rect2></Rect2>
@@ -43,6 +44,16 @@ const Container = styled.div`
   flex-direction: column;
 `;
 
+const Discription = styled.span`
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 400;
+  color: #121212;
+  height: 98px;
+  width: 359px;
+  font-size: 12px;
+`;
+
 const Information = styled.div`
   top: 96px;
   left: 396px;
@@ -58,7 +69,7 @@ const Title = styled.span`
   font-style: normal;
   font-weight: 700;
   color: #121212;
-
+  width: 700px;
   font-size: 50px;
 `;
 

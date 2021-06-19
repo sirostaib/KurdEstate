@@ -1,16 +1,16 @@
 import React, { Component } from "react";
 import styled, { css } from "styled-components";
-import Header from "../components/Header";
+import Headerslogin from "../components/headerslogin";
 
 function Contact(props) {
   return (
     <>
-      <Header
+      <Headerslogin
         style={{
           width: 1920,
           height: 262
         }}
-      ></Header>
+      ></Headerslogin>
       <EllipseStackRow>
         <EllipseStack>
           <svg
