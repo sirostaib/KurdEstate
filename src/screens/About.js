@@ -1,12 +1,50 @@
-import React, { Component } from "react";
+import React, { Component , useState } from "react";
+import { fs } from "../firebase";
 import styled, { css } from "styled-components";
 import Headerslogin from "../components/headerslogin";
 import RegisterBtn from "../components/RegisterBtn";
 import SubmitBtnContact from "../components/SubmitBtnContact";
 import {NavLink} from "react-router-dom";
 
+
+
 function About(props) {
+
+  const [name1 , setname] = useState("");
+  const [email , setemail] = useState("");
+  const [message , setmessage] = useState("");
+
+  const [loader , setloader] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setloader(true);
+  
+    fs.collection('Contacts').add({
+  
+      name1: name1,
+      email: email,
+      message: message,
+  
+    })
+    .then((e) => {
+      alert("Message have been set successfuly");
+      setloader(false);
+    })
+    .catch(error => {
+      alert(error.Message);
+      setloader(false);
+    });
+  
+    setname("");
+    setemail("");
+    setmessage("");
+  
+  }
+
+
   return (
+    <form onSubmit={handleSubmit}>
     <Container>
       <Headerslogin
         style={{
@@ -16,7 +54,8 @@ function About(props) {
       ></Headerslogin>
       <ImageStack>
         <Image>
-          <NavLink to="/signup">
+
+        <NavLink to="/signup">
           <RegisterBtn type="submit"
             style={{
               height: 44,
@@ -28,6 +67,8 @@ function About(props) {
           </NavLink>
 
         </Image>
+
+
         <ContactUs>Contact Us</ContactUs>
         <LoremIpsum>
           Kurd&#39;s membership is composed of residential and commercial
@@ -35,26 +76,34 @@ function About(props) {
           others engaged in the real estate industry.
         </LoremIpsum>
         <NewUser>New User?</NewUser>
+
+        <Gname>
+          <Name>Name</Name>
+          <Placeholdername placeholder="Enter your name" value={name1}  onChange={(e) => setname(e.target.value)}></Placeholdername>
+        </Gname>
+
         <GEmail>
           <Email>Email</Email>
-          <PlaceholderEmail placeholder="Enter your email address"></PlaceholderEmail>
+          <PlaceholderEmail placeholder="Enter your email address" value={email}  onChange={(e) => setemail(e.target.value)}></PlaceholderEmail>
         </GEmail>
         <GDescription>
-          <Description>Discription</Description>
-          <PlaceholderDescription placeholder="Message"></PlaceholderDescription>
+          <Message>Message</Message>
+          <textarea placeholder="Message" value={message}  onChange={(e) => setmessage(e.target.value)}></textarea>
         </GDescription>
         
-        <SubmitBtnContact type="submit"
+        <button className="btn btn-primary w-30 mt-3" type="submit"
           style={{
+            background: loader ? "#ccc" : "rbg(2 , 2 ,110)",
             height: 44,
             width: 122,
             position: "absolute",
             left: 1053,
             top: 594
           }}
-        ></SubmitBtnContact>
+        > Submit</button>
       </ImageStack>
     </Container>
+    </form>
   );
 }
 
@@ -115,6 +164,16 @@ const NewUser = styled.span`
 `;
 
 const GEmail = styled.div`
+  top: 290px;
+  left: 1053px;
+  width: 490px;
+  height: 94px;
+  position: absolute;
+  flex-direction: column;
+  display: flex;
+`;
+
+const Gname = styled.div`
   top: 177px;
   left: 1053px;
   width: 490px;
@@ -125,6 +184,14 @@ const GEmail = styled.div`
 `;
 
 const Email = styled.span`
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 700;
+  color: rgba(255,255,255,1);
+  font-size: 20px;
+`;
+
+const Name = styled.span`
   font-family: Roboto;
   font-style: normal;
   font-weight: 700;
@@ -144,8 +211,20 @@ border: none;
 
 `;
 
+const Placeholdername = styled.input`
+font-family: Roboto;
+font-style: normal;
+font-weight: 400;
+color: #121212;
+height: 63px;
+width: 490px;
+background-color: rgba(230, 230, 230,1);
+border: none;
+
+`;
+
 const GDescription = styled.div`
-  top: 308px;
+  top: 408px;
   left: 1053px;
   width: 490px;
   height: 180px;
@@ -154,7 +233,7 @@ const GDescription = styled.div`
   display: flex;
 `;
 
-const Description = styled.span`
+const Message = styled.span`
   font-family: Roboto;
   font-style: normal;
   font-weight: 700;
@@ -162,7 +241,7 @@ const Description = styled.span`
   font-size: 20px;
 `;
 
-const PlaceholderDescription = styled.input`
+const textarea = styled.input`
   font-family: Roboto;
   font-style: normal;
   font-weight: 400;

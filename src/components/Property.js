@@ -55,11 +55,11 @@ const items = useItems()
 
   return (
     <div>
-        
+
         {items.map( (item) => {
           return(
             
-            <Container>
+            <Container >
             <MaterialButtonLightStack>
               <MaterialButtonLight
                 style={{
@@ -73,28 +73,39 @@ const items = useItems()
               ></MaterialButtonLight>
               <Information>
                 <div key={item.id}>
-                <TitleColumnRow>
-                  <TitleColumn>
-                    <Title>{item.title}</Title>
-                    <Street>{item.location}</Street>
-                  </TitleColumn>
-                  <Discription>Discription</Discription>
-                  <Price>${item.price}</Price>
-                </TitleColumnRow>
-                <Rect2></Rect2>
-                <OwnerFullNameRow>
-                  <OwnerFullName>Owner Full Name:{item.owner}</OwnerFullName>
-                  <PhoneNumber>Phone Number:{item.phone}</PhoneNumber>
-                  <M2>M2:{item.area}</M2>
-                  <Purpose>Purpose:</Purpose>
-                </OwnerFullNameRow>
+                <TitleStack>
+                  <Title>{item.Title}</Title>
+                  <City>City:{item.City}</City>
+                </TitleStack>
+
+                <AddressColumnRow>
+                  <AddressColumn>
+                    <Address>Address:{item.Address}</Address>
+                    <Description>{item.Description}</Description>
+                  </AddressColumn>
+                  <Price>${item.Price}</Price>
+                </AddressColumnRow>
+
+                <OwnerFullNameColumnRow>
+                  <OwnerFullNameColumn>
+                    <OwnerFullName>Owner Full Name:{item.owner}</OwnerFullName>
+                    <Email>Email:{item.email}</Email>
+                  </OwnerFullNameColumn>
+                  <PhoneNumberStack>
+                    <PhoneNumber>Phone Number:{item.phone}</PhoneNumber>
+                    <Area>M2:{item.Area}</Area>
+                  </PhoneNumberStack>
+                  <PurposeColumn>
+                    <Purpose>Purpose:{item.Purpose}</Purpose>
+                    <Date>Date:{item.Date}</Date>
+                  </PurposeColumn>
+                </OwnerFullNameColumnRow>
                 </div>
               </Information>
               <Image3 src={require("../assets/images/Unts-2.png")}></Image3>
+              <Rect2></Rect2>
             </MaterialButtonLightStack>
-            <br/>
-            <br/>
-            <br/>
+
           </Container>
           
           );
@@ -109,21 +120,11 @@ const Container = styled.div`
   flex-direction: column;
 `;
 
-const Discription = styled.span`
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: 400;
-  color: #121212;
-  height: 98px;
-  width: 359px;
-  font-size: 12px;
-`;
-
 const Information = styled.div`
-  top: 96px;
+  top: 10px;
   left: 396px;
   width: 1088px;
-  height: 160px;
+  height: 62px;
   position: absolute;
   flex-direction: column;
   display: flex;
@@ -131,26 +132,58 @@ const Information = styled.div`
 
 const Title = styled.span`
   font-family: Roboto;
+  top: 0px;
+  left: 0px;
+  position: absolute;
   font-style: normal;
   font-weight: 700;
   color: #121212;
-  height: 61px;
-  width: 768px;
   font-size: 50px;
+  width: 1088px;
+  height: 62px;
 `;
 
-const Street = styled.span`
+const City = styled.span`
+  font-family: Roboto;
+  top: 56px;
+  left: 0px;
+  position: absolute;
+  font-style: normal;
+  font-weight: 400;
+  color: #121212;
+  height: 31px;
+  width: 359px;
+  font-size: 20px;
+`;
+
+const TitleStack = styled.div`
+  width: 1088px;
+  height: 87px;
+  position: relative;
+`;
+
+const Address = styled.span`
   font-family: Roboto;
   font-style: normal;
   font-weight: 400;
   color: #121212;
-  height: 25px;
-  width: 554px;
+  height: 37px;
+  width: 428px;
   font-size: 20px;
 `;
 
-const TitleColumn = styled.div`
-  width: 368px;
+const Description = styled.span`
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 400;
+  color: #121212;
+  height: 69px;
+  width: 855px;
+  font-size: 12px;
+`;
+
+const AddressColumn = styled.div`
+  width: 855px;
   flex-direction: column;
   display: flex;
 `;
@@ -163,22 +196,15 @@ const Price = styled.span`
   height: 63px;
   width: 219px;
   font-size: 50px;
-  margin-left: 499px;
-  margin-top: 7px;
+  margin-left: 14px;
+  margin-top: 6px;
 `;
 
-const TitleColumnRow = styled.div`
-  height: 86px;
+const AddressColumnRow = styled.div`
+  height: 106px;
   flex-direction: row;
   display: flex;
-  margin-left: 2px;
-`;
-
-const Rect2 = styled.div`
-  width: 1088px;
-  height: 4px;
-  background-color: rgba(77,77,77,1);
-  margin-top: 20px;
+  margin-top: 85px;
 `;
 
 const OwnerFullName = styled.span`
@@ -189,32 +215,58 @@ const OwnerFullName = styled.span`
   height: 30px;
   width: 393px;
   font-size: 20px;
-  margin-top: 6px;
+`;
+
+const Email = styled.span`
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 700;
+  color: #121212;
+  height: 24px;
+  width: 338px;
+  font-size: 20px;
+`;
+
+const OwnerFullNameColumn = styled.div`
+  width: 393px;
+  flex-direction: column;
+  display: flex;
+  margin-bottom: 7px;
 `;
 
 const PhoneNumber = styled.span`
   font-family: Roboto;
+  top: 0px;
+  left: 0px;
+  position: absolute;
   font-style: normal;
   font-weight: 700;
   color: #121212;
   height: 32px;
-  width: 291px;
+  width: 312px;
   font-size: 20px;
-  margin-left: 6px;
-  margin-top: 3px;
 `;
 
-const M2 = styled.span`
+const Area = styled.span`
   font-family: Roboto;
+  position: absolute;
   font-style: normal;
   font-weight: 700;
   color: #121212;
   font-size: 20px;
+  left: 0px;
+  top: 31px;
   text-align: left;
-  width: 85px;
+  width: 183px;
   height: 24px;
-  margin-left: 23px;
-  margin-top: 3px;
+`;
+
+const PhoneNumberStack = styled.div`
+  width: 312px;
+  height: 55px;
+  margin-left: 6px;
+  margin-top: 1px;
+  position: relative;
 `;
 
 const Purpose = styled.span`
@@ -223,17 +275,34 @@ const Purpose = styled.span`
   font-weight: 700;
   color: #121212;
   height: 27px;
-  width: 185px;
+  width: 351px;
   font-size: 20px;
-  margin-left: 71px;
 `;
 
-const OwnerFullNameRow = styled.div`
-  height: 36px;
+const Date = styled.span`
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 700;
+  color: #121212;
+  height: 29px;
+  width: 351px;
+  font-size: 20px;
+  margin-top: 3px;
+`;
+
+const PurposeColumn = styled.div`
+  width: 351px;
+  flex-direction: column;
+  display: flex;
+  margin-left: 26px;
+  margin-top: 2px;
+`;
+
+const OwnerFullNameColumnRow = styled.div`
+  height: 61px;
   flex-direction: row;
   display: flex;
-  margin-top: 15px;
-  margin-right: 34px;
+  margin-top: 7px;
 `;
 
 const Image3 = styled.img`
@@ -245,11 +314,21 @@ const Image3 = styled.img`
   object-fit: contain;
 `;
 
+const Rect2 = styled.div`
+  top: 202px;
+  left: 396px;
+  width: 1088px;
+  height: 4px;
+  position: absolute;
+  background-color: rgba(77,77,77,1);
+`;
+
 const MaterialButtonLightStack = styled.div`
   width: 1522px;
   height: 282px;
   position: relative;
 `;
+
 
 export default Property;
 

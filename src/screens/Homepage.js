@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import styled, { css } from "styled-components";
 import Header from "../components/Header";
 import Properties from "../components/Properties";
-import Property1 from "../components/Property";
+import Property from "../components/Property";
 
 function Homepage(props) {
   return (
@@ -14,14 +14,14 @@ function Homepage(props) {
         }}
       ></Header>
       <Image src={require("../assets/images/asa.png")}></Image>
-      <Property1
+      <Property
         style={{
           height: 282,
           width: 1521,
-          marginTop: 166,
+          marginTop: 366,
           marginLeft: 200
         }}
-      ></Property1>
+      ></Property>
     </>
   );
 }
