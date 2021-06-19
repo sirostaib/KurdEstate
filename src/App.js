@@ -16,6 +16,7 @@ import AddProperty from "./components/AddProperty";
 import SearchResult from "./components/SearchResult";
 import Signup from "./components/Signup";
 import Homepagelogin from "./components/Homepagelogin";
+import searchpage from "./screens/Searchpage.js";
 import "./style.css";
 
 function App() {
@@ -29,8 +30,9 @@ function App() {
               <PrivateRoute path="/Homepage" component={Homepage}/>
               <Route path="/About" component={About} />
               <Route path="/signup" component={Signup} />
+              <Route path="/Searchpage" component={searchpage}/>
               <Route path="/login" component={Login} />
-              <PrivateRoute path="/AddProperty" component={AddProperty} />
+              <PrivateRoute path="/AddProperty" component={AddProperty}/>
               <Route path="/Contact" component={Contact} />
               <Route path="/Search" component={Search} />
               <Route path="/forgot-password" component={ForgotPassword} />
