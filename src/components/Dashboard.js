@@ -1,7 +1,6 @@
 import React, { useState, Container } from "react"
 import { Card, Button, Alert } from "react-bootstrap"
 import { useAuth } from "../contexts/AuthContext"
-import app from "../firebase"
 import { Link, useHistory } from "react-router-dom"
 import Property from "./Property"
 
