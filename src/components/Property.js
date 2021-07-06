@@ -104,7 +104,7 @@ const items = useItems()
                 </OwnerFullNameColumnRow>
                 </div>
               </Information>
-              <Image3 src={require("../assets/images/house.png")}></Image3>
+              <Image3 src={item.url}></Image3>
               <Rect2></Rect2>
               
             </MaterialButtonLightStack>

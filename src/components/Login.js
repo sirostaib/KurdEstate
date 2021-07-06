@@ -21,7 +21,9 @@ export default function Login() {
       setLoading(true)
       await login(emailRef.current.value, passwordRef.current.value)
       history.push("/Homepage")
-    } catch {
+    } 
+    
+    catch {
       setError("Failed to log in")
     }
 
@@ -62,6 +64,7 @@ export default function Login() {
        <Loging>
          <Rect2>
            <Login1>Login</Login1>
+
            <Email placeholder="   Enter the email" type="email" ref={emailRef} required></Email>
            <Password placeholder="   Enter the password" type="password" ref={passwordRef} required></Password>
 

@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import app from '../firebase';
 import { Link, useHistory } from "react-router-dom"
 import styled, { css } from "styled-components";
+import {storage} from "../firebase";
 import { useAuth } from '../contexts/AuthContext';
 import Header from "./Header";
 
@@ -13,6 +14,10 @@ const AddProperty= () => {
     const [title, setTitle] = useState('')
     const [owner, setOwner] = useState('')
     const [area, setArea] = useState()
+
+    const [image , setImage] = useState(null)
+    const [url1 , setUrl] = useState("");
+    const [url2 , setUrll] = useState("");
     const [price, setPrice] = useState()
     const [city, setCity] = useState('')
     const {currentUser} = useAuth()
@@ -25,13 +30,36 @@ const AddProperty= () => {
             date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
 
 
+
+            const handleChange = e => {
+              if(e.target.files[0]){
+                setImage(e.target.files[0]);
+              }
+            };
+
+
     function onSubmit(e){
         e.preventDefault()
 
         setPrice(parseInt(price));
         setArea(parseInt( area ))
+var testX = [];
+        const uploadTask = storage.ref(`images/${image.name}`).put(image);
+        uploadTask.on(
+          "state_changed" , 
+           snapshot => {}, 
+           error => {
+             console.log(error);
+           },
 
-        app.firestore()
+           
+           () => {
+             storage
+             .ref("images")
+             .child(image.name)
+             .getDownloadURL()
+             .then(url => {
+              app.firestore()
         .collection('properties')
         .add({
             email,
@@ -44,7 +72,9 @@ const AddProperty= () => {
             city, 
             phone,
             location,
-            description
+            description,
+            url
+           
             //postedBy
 
         })
@@ -60,8 +90,48 @@ const AddProperty= () => {
             setPurpose('')
             history.push("/Homepage")
         } )
+             });
+           }
+        );
 
+       
+/*
+        app.firestore()
+        .collection('properties')
+        .add({
+            email,
+            title,
+            owner,
+            purpose,
+            price, 
+            date, 
+            area, 
+            city, 
+            phone,
+            location,
+            description,
+            url1, 
+            url2, 
+            testX
+            //postedBy
+
+        })
+        .then( ()=>{
+            setTitle('')
+            setPrice()
+            setOwner('')
+            setArea()
+            setCity('')
+            setLocation('')
+            setDescription('')
+            setPhone()
+            setPurpose('')
+            history.push("/Homepage")
+        } )
+*/
     }
+
+    console.log("image: ", image);
 
     return (
 
@@ -105,7 +175,9 @@ const AddProperty= () => {
         <br /> 
         <Gprice style={{marginLeft: "87px"}}>
             <Price>Price</Price>
+            
             <PlaceholderPrice type="number" placeholder="Ex:. $200000" value={price} onChange={e=>setPrice( parseInt( e.currentTarget.value ) )}></PlaceholderPrice>
+            
             <button className="btn btn-primary w-30 mt-3" type="submit" style={{
                 marginTop: 120
             }}>Post Property</button>
@@ -113,8 +185,10 @@ const AddProperty= () => {
         
         
         </GpriceRow>
+        
 
         <GAreaRow>
+          
         
         <GArea>
             <AreaInM2 >Area (in Meter)</AreaInM2>
@@ -127,7 +201,9 @@ const AddProperty= () => {
             <PlaceholderName type="text" placeholder="Enter the name.." value={owner} onChange={e=>setOwner(e.currentTarget.value)}></PlaceholderName>
             <OwnerFullName>Owner Full Name</OwnerFullName>
             </PlaceholderNameStack>
+            
         </GownerName>
+        
         </GAreaRow>
         <br/>
         <br/>
@@ -136,9 +212,20 @@ const AddProperty= () => {
         <br/>
         <br/>
         <GDescription style={{marginLeft: '130px'}}>
+          
             <Description>Description</Description>
             <PlaceholderDescription type="text" placeholder="Description" value={description} onChange={e=>setDescription(e.currentTarget.value)}></PlaceholderDescription>
+            
         </GDescription>
+
+        <GDescription2 style={{marginLeft: '1100px'}}>
+          
+        <Description>Upload Photo: </Description>
+          <input type="file" onChange={handleChange}/>
+
+        </GDescription2>
+
+      
        
         </form>
 
@@ -150,6 +237,12 @@ const Title = styled.div`
   height: 55px;
   flex-direction: column;
   display: flex;
+`;
+
+const input = styled.div`
+
+margin-left = 100px;
+
 `;
 
 const button2 = styled.div`
@@ -338,6 +431,15 @@ const GDescription = styled.div`
   flex-direction: column;
   display: flex;
   margin-left: 87px;
+`;
+
+const GDescription2 = styled.div`
+  width: 501px;
+  height: 140px;
+  flex-direction: column;
+  display: flex;
+  margin-left: 87px;
+  margin-top: -100px;
 `;
 
 const Description = styled.span`
