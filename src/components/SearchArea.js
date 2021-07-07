@@ -158,7 +158,7 @@ render(){
                  </OwnerFullNameColumnRow>
                  </div>
                </Information>
-               <Image3 src={require("../assets/images/house.png")}></Image3>
+               <Image3 src={item.url}></Image3>
                <Rect22></Rect22>
                
              </MaterialButtonLightStack>
